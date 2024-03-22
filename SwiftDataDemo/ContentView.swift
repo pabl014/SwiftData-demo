@@ -15,7 +15,10 @@ struct ContentView: View {
     @State private var isShowingItemSheet = false
     @State private var expenseToEdit: Expense? // optional, because we may not always be editing that
     
-    @Query(sort: \Expense.date) var expenses: [Expense] = [] // fetch all of our expenses
+    // @Query(sort: \Expense.date) var expenses: [Expense] = [] // fetch all of our expenses
+    
+    @Query(filter: #Predicate<Expense> { $0.value > 1000}, sort: \Expense.date) 
+    var expenses: [Expense] = []
     
     var body: some View {
         NavigationStack {
@@ -48,7 +51,7 @@ struct ContentView: View {
             .overlay {
                 if expenses.isEmpty {
                     ContentUnavailableView(label: {
-                        Label("No Expenses", systemImage: "list.bullet.rectangle,portrait")
+                        Label("No Expenses", systemImage: "list.bullet.rectangle.portrait")
                     }, description: {
                         Text("Start adding expenses to see your list.")
                     }, actions: {

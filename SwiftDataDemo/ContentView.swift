@@ -13,6 +13,8 @@ struct ContentView: View {
     @Environment(\.modelContext) var context
     
     @State private var isShowingItemSheet = false
+    @State private var expenseToEdit: Expense? // optional, because we may not always be editing that
+    
     @Query(sort: \Expense.date) var expenses: [Expense] = [] // fetch all of our expenses
     
     var body: some View {
@@ -20,6 +22,9 @@ struct ContentView: View {
             List {
                 ForEach(expenses) { expense in
                     ExpenseCell(expense: expense)
+                        .onTapGesture {
+                            expenseToEdit = expense
+                        }
                 }
                 .onDelete { indexSet in
                     for index in indexSet {
@@ -30,6 +35,9 @@ struct ContentView: View {
             .navigationTitle("Expenses")
             .navigationBarTitleDisplayMode(.large)
             .sheet(isPresented: $isShowingItemSheet) { AddExpenseSheet() }
+            .sheet(item: $expenseToEdit) { expense in
+                UpdateExpenseSheet(expense: expense)
+            }
             .toolbar {
                 if !expenses.isEmpty {
                     Button("Add Expense", systemImage: "plus") {
@@ -105,6 +113,31 @@ struct AddExpenseSheet: View {
                         //try! context.save() // if you don't trust autosave (do try catch to handle the error)
                         dismiss()
                     }
+                }
+            }
+        }
+    }
+}
+
+struct UpdateExpenseSheet: View {
+    
+    @Environment(\.dismiss) private var dismiss
+    @Bindable var expense: Expense
+    
+    
+    var body: some View {
+        NavigationStack {
+            Form {
+                TextField("Expense Name", text: $expense.name)
+                DatePicker("Date", selection: $expense.date, displayedComponents: .date)
+                TextField("Value", value: $expense.value, format: .currency(code: "USD"))
+                    .keyboardType(.decimalPad)
+            }
+            .navigationTitle("Update Expense")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItemGroup(placement: .topBarLeading) {
+                    Button("Cancel") { dismiss() }
                 }
             }
         }

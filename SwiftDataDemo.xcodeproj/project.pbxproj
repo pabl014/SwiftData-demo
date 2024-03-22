@@ -11,6 +11,7 @@
 		FE9BD5452BADA57600571BF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9BD5442BADA57600571BF7 /* ContentView.swift */; };
 		FE9BD5472BADA57700571BF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9BD5462BADA57700571BF7 /* Assets.xcassets */; };
 		FE9BD54A2BADA57700571BF7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE9BD5492BADA57700571BF7 /* Preview Assets.xcassets */; };
+		FE9BD5512BADA59D00571BF7 /* Expense.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE9BD5502BADA59D00571BF7 /* Expense.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		FE9BD5442BADA57600571BF7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FE9BD5462BADA57700571BF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE9BD5492BADA57700571BF7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FE9BD5502BADA59D00571BF7 /* Expense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expense.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				FE9BD5422BADA57600571BF7 /* SwiftDataDemoApp.swift */,
 				FE9BD5442BADA57600571BF7 /* ContentView.swift */,
+				FE9BD5502BADA59D00571BF7 /* Expense.swift */,
 				FE9BD5462BADA57700571BF7 /* Assets.xcassets */,
 				FE9BD5482BADA57700571BF7 /* Preview Content */,
 			);
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE9BD5512BADA59D00571BF7 /* Expense.swift in Sources */,
 				FE9BD5452BADA57600571BF7 /* ContentView.swift in Sources */,
 				FE9BD5432BADA57600571BF7 /* SwiftDataDemoApp.swift in Sources */,
 			);

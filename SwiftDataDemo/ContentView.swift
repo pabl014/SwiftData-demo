@@ -11,7 +11,7 @@ import SwiftData
 struct ContentView: View {
     
     @State private var isShowingItemSheet = false
-    var expenses: [Expense] = []
+    @Query(sort: \Expense.date) var expenses: [Expense] = [] // fetch all of our expenses
     
     var body: some View {
         NavigationStack {
@@ -67,7 +67,9 @@ struct ExpenseCell: View {
 
 struct AddExpenseSheet: View {
     
+    @Environment(\.modelContext) var context // all of views have an access to it
     @Environment(\.dismiss) private var dismiss
+    
     @State private var name: String     = ""
     @State private var date: Date       = .now
     @State private var value: Double    = 0
@@ -90,7 +92,11 @@ struct AddExpenseSheet: View {
                 
                 ToolbarItemGroup(placement: .topBarTrailing) {
                     Button("Save") {
-                        // save code goes here
+                        let expense = Expense(name: name, date: date, value: value)
+                        context.insert(expense) // insert and autosave
+                        
+                        //try! context.save() // if you don't trust autosave (do try catch to handle the error)
+                        dismiss()
                     }
                 }
             }

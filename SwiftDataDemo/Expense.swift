@@ -12,9 +12,9 @@ import SwiftData
 class Expense { // MUST BE a CLASS for SwiftData, not a struct
     @Attribute(.unique) var name: String // @Attribute(.unique) -> name is unique 
     var date: Date
-    var value: Int
+    var value: Double
     
-    init(name: String, date: Date, value: Int) {
+    init(name: String, date: Date, value: Double) {
         self.name = name
         self.date = date
         self.value = value
